@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y nodejs npm
 WORKDIR /var/www
 
 # Add docker php ext repo
-ADD install-php-extensions /usr/local/bin/
+ADD docker/install-php-extensions /usr/local/bin/
 
 
 # Install php extensions

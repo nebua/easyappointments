@@ -3,6 +3,7 @@
 cd /var/www
 
 # Deployment steps
+npm install
 composer install --optimize-autoloader --no-dev
 
 php artisan migrate:fresh --seed
