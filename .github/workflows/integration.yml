@@ -1,0 +1,40 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  #build-and-deploy:
+  docker:
+    name: Docker
+    runs-on: ubuntu-latest
+    #strategy:
+      #matrix:
+        #node-version: [14.x]
+    steps:
+      - uses: actions/checkout@master
+      - name: Deploy
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          ssh-keyscan $SERVER_IP >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+          touch ssh_key
+          (echo "$SSH_PRIVATE_KEY") > ssh_key
+          chmod 600 ssh_key
+          scp -r -i ssh_key ./* root@$SERVER_IP:/usr/local/src/easyappointments
+      - name: Docker Login
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Build the Docker Image
+        run: docker build . --file Dockerfile --tag nebua/easyappointments:latest
+      - name: Docker Push
+        run: docker push $DOCKER_USER/easyappointments:latest
+      
+      
+    env:
+      DOCKER_USER: ${{secrets.DOCKER_USER}}
+      DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      SSH_PRIVATE_KEY: ${{secrets.SSH_KEY}}
+      SERVER_IP: ${{secrets.SERVER_IP}}
+      CI: false
