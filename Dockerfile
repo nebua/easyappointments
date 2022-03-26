@@ -1,5 +1,10 @@
 FROM php:8.1.0-fpm
-RUN apt-get update && apt-get install -y nodejs npm@14.14.0
+
+RUN apt-get install curl
+
+RUN curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
+
+RUN apt-get update && apt-get install -y nodejs
 # Set working directory
 WORKDIR /var/www/public
 
