@@ -2,7 +2,7 @@ FROM php:8.1.0-fpm
 
 RUN apt-get install curl
 
-RUN curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 
 RUN apt-get update && apt-get install -y nodejs
 # Set working directory
