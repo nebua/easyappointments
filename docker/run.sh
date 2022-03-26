@@ -3,11 +3,8 @@
 cd /var/www
 
 # Deployment steps
-npm install
-composer install --optimize-autoloader --no-dev
 
-php artisan migrate:fresh --seed
-#php artisan cache:clear
-#php artisan route:cache
+npm install && composer install --optimize-autoloader --no-dev
+npm start
 
 /usr/bin/supervisord -c /etc/supervisord.conf
