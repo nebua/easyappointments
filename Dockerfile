@@ -1,7 +1,7 @@
 FROM php:8.1.0-fpm
 RUN apt-get update && apt-get install -y nodejs npm
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/public
 
 # Add docker php ext repo
 ADD docker/install-php-extensions /usr/local/bin/
@@ -57,11 +57,11 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
-# # Copy code to /var/www
-COPY --chown=www:www-data . /var/www
+# # Copy code to /var/www/public
+COPY --chown=www:www-data . /var/www/public
 
 # # add root to www group
-RUN chmod -R ug+w /var/www/storage
+RUN chmod -R ug+w /var/www/public/storage
 
 # # Copy nginx/php/supervisor configs
 RUN cp docker/supervisor.conf /etc/supervisord.conf
@@ -75,10 +75,7 @@ RUN touch /var/log/php/errors.log && chmod 777 /var/log/php/errors.log
 #RUN    echo "de_DE.UTF-8 UTF-8\nen_US.UTF-8 UTF-8\nes_ES.UTF-8 UTF-8\nfr_FR.UTF-8 UTF-8\nid_ID.UTF-8 UTF-8\nit_IT.UTF-8 UTF-8\nnl_NL.UTF-8 UTF-8\npl_PL.UTF-8 UTF-8\npt_BR.UTF-8 UTF-8\nru_RU.UTF-8 UTF-8\ntr_TR.UTF-8 UTF-8\nzh_TW.UTF-8 UTF-8\nzh_CN.UTF-8 UTF-8\n\n" > /etc/locale.gen
 #RUN    locale-gen
 
-# # Deployment steps
-#RUN composer install --optimize-autoloader --no-dev
-
-RUN chmod +x /var/www/docker/run.sh
+RUN chmod +x /var/www/public/docker/run.sh
 
 EXPOSE 8080
-ENTRYPOINT ["/var/www/docker/run.sh"]
+ENTRYPOINT ["/var/www/public/docker/run.sh"]
