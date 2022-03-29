@@ -3,7 +3,7 @@
 cd /var/www/public
 
 # Deployment steps
-bash ./docker/generateConfig.sh $pwd/../config.php
+bash ./docker/generateConfig.sh /var/www/public/config.php
 
 npm install 
 composer update
