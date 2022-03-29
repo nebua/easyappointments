@@ -14,8 +14,8 @@ ADD docker/install-php-extensions /usr/local/bin/
 
 # Install php extensions
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
-    install-php-extensions mbstring pdo_mysql zip exif pcntl gd memcached \
-    bcmath ldap gd pdo pdo_pgsql pgsql pdo_mysql intl opcache
+    install-php-extensions pdo_mysql mysqli zip exif pcntl gd memcached \
+    bcmath ldap pdo_pgsql pgsql intl opcache
 
 # Install dependencies https://computingforgeeks.com/how-to-install-php-on-ubuntu-linux-system/
 RUN apt-get update && apt-get install -y \
@@ -80,7 +80,9 @@ RUN touch /var/log/php/errors.log && chmod 777 /var/log/php/errors.log
 #RUN    echo "de_DE.UTF-8 UTF-8\nen_US.UTF-8 UTF-8\nes_ES.UTF-8 UTF-8\nfr_FR.UTF-8 UTF-8\nid_ID.UTF-8 UTF-8\nit_IT.UTF-8 UTF-8\nnl_NL.UTF-8 UTF-8\npl_PL.UTF-8 UTF-8\npt_BR.UTF-8 UTF-8\nru_RU.UTF-8 UTF-8\ntr_TR.UTF-8 UTF-8\nzh_TW.UTF-8 UTF-8\nzh_CN.UTF-8 UTF-8\n\n" > /etc/locale.gen
 #RUN    locale-gen
 
+RUN chmod +x /var/www/public/docker/generateConfig.sh
 RUN chmod +x /var/www/public/docker/run.sh
+
 
 EXPOSE 8080
 ENTRYPOINT ["/var/www/public/docker/run.sh"]

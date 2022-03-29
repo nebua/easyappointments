@@ -1,21 +1,30 @@
-version: "3.1"
+version: "3.3"
 services:
-    mysql:
+    db:
         image: mysql:5.7
-        container_name: easyappointments-database
-        volumes:
-            - ./mysql:/var/lib/mysql
+        container_name: easyappointments_database
+        hostname: easyappointments_db
+        #volumes:
+        #    - ./mysql:/var/lib/mysql
         environment:
-            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_ROOT_PASSWORD=password
             - MYSQL_DATABASE=easyappointments
         ports:
             - "8001:3306"
-    server:
-        build: ./server
-        image: easyappointments-server:v1
+    app:
+        image: nebua/easyappointments
         container_name: easyappointments-server
+        environment: 
+                BASE_URL : "http://localhost:8080"
+                LANGUAGE: "english"
+                DEBUG_MODE: 'true'
+                DB_HOST: easyappointments_db
+                DB_NAME: easyappointments
+                DB_USERNAME: root
+                DB_PASSWORD: password
+                GOOGLE_SYNC_FEATURE: 'false'
         ports:
-            - "8000:80"
-        volumes:
-            - ../:/var/www/html
-            - ./server/php.ini:/usr/local/etc/php/conf.d/99-overrides.ini
+            - "8080:8080"
+       # volumes:
+       #     - ../:/var/www/html
+       #     - ./server/php.ini:/usr/local/etc/php/conf.d/99-overrides.ini
