@@ -23,6 +23,10 @@ services:
                 DB_USERNAME: root
                 DB_PASSWORD: password
                 GOOGLE_SYNC_FEATURE: 'false'
+                GOOGLE_PRODUCT_NAME: 'xx'
+                GOOGLE_CLIENT_ID: 'xx'
+                GOOGLE_CLIENT_SECRET: 'xx'
+                GOOGLE_API_KEY: 'xx'
         ports:
             - "8080:8080"
        # volumes:
