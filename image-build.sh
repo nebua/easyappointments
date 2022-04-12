@@ -5,10 +5,10 @@ docker login
 
 echo "Building image !"
 
-docker build . -t nebua/easyappointments:latest
+docker build . -t local/easyappointments:local
 
 echo "Saving image tar!"
-docker save nebua/easyappointments:latest > nebua-easyappointments.tar
+docker save local/easyappointments:local > nebua-easyappointments.tar
 
 # Import to microk8s
 echo "Importing image to microk8s!"
