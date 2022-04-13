@@ -12,10 +12,10 @@ docker save local/easyappointments:local > nebua-easyappointments.tar
 
 # Import to microk8s
 echo "Importing image to microk8s!"
-microk8s ctr image import nebua-easyappointments.tar
+sudo microk8s ctr image import nebua-easyappointments.tar
 
-#echo "Remove File tar!"
+echo "Remove File tar!"
 sudo rm -r nebua-easyappointments.tar
-#echo "Done!"
+echo "Done!"
 
 #docker image push nebua/easyappointments:latest
