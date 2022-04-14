@@ -28,4 +28,7 @@
 /vendor/
 /metafile
 .DS_Store
+<<<<<<< HEAD
 nebua-easyappointments.tar
+=======
+>>>>>>> f9e68cbd5898bc562544af87e9d5e9e0125f6d61
