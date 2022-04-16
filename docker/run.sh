@@ -15,7 +15,10 @@
  # Deployment steps
  bash /usr/share/nginx/html/docker/generateConfig.sh /usr/share/nginx/html/config.php
 
- npm install 
+cd /usr/share/nginx/html
+
+npm install 
+
 # composer update
  composer install #--optimize-autoloader --no-dev
 # #npm start
