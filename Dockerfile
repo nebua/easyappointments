@@ -112,14 +112,9 @@ COPY ./docker/default.conf /etc/nginx/conf.d/default.conf
 # Override default nginx welcome page
 COPY . /usr/share/nginx/html
 
-RUN chmod +x ./docker/generateConfig.sh
-RUN chmod +x ./docker/run.sh
+RUN chmod +x /usr/share/nginx/html/docker/generateConfig.sh
+RUN chmod +x /usr/share/nginx/html/docker/run.sh
 
-# Copy Scripts
-COPY ./docker/run.sh /run.sh
-
-RUN chmod +x /run.sh
 
 EXPOSE 8080
-
-CMD ["/run.sh"]
+ENTRYPOINT ["/usr/share/nginx/html/docker/run.sh"]
