@@ -112,8 +112,13 @@ COPY ./docker/default.conf /etc/nginx/conf.d/default.conf
 # Override default nginx welcome page
 COPY . /usr/share/nginx/html
 
+RUN chmod +x /var/www/public/docker/generateConfig.sh
+#RUN chmod +x /var/www/public/docker/run.sh
+
 # Copy Scripts
 COPY ./docker/run.sh /run.sh
+
+RUN chmod +x /run.sh
 
 EXPOSE 8080
 
