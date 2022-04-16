@@ -13,7 +13,7 @@
 # /usr/bin/supervisord -c /etc/supervisord.conf
 
  # Deployment steps
- bash ./docker/generateConfig.sh /usr/share/nginx/html/config.php
+ bash /usr/share/nginx/html/docker/generateConfig.sh /usr/share/nginx/html/config.php
 
  npm install 
 # composer update
