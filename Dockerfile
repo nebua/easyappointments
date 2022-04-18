@@ -9,6 +9,12 @@ ENV php_conf /etc/php/8.1/fpm/php.ini
 ENV fpm_conf /etc/php/8.1/fpm/pool.d/www.conf
 ENV COMPOSER_VERSION 2.2.7
 
+#RUN apt-get install curl
+
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+
+RUN apt-get update && apt-get install -y nodejs npm
+
 # Install Basic Requirements
 RUN buildDeps='curl gcc make autoconf libc-dev zlib1g-dev pkg-config' \
     && set -x \
