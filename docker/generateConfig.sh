@@ -57,7 +57,7 @@ class Config {
 
     const BASE_URL      = 'put your unique phrase here';
     const LANGUAGE      = 'put your unique phrase here';
-    const DEBUG_MODE    = FALSE;
+    const DEBUG_MODE    = TRUE;
 
     // ------------------------------------------------------------------------
     // DATABASE SETTINGS
